@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type FormEvent } from "react";
 import type { Task } from "../models/Task";
 
 export default function UseTask() {
@@ -9,11 +9,10 @@ export default function UseTask() {
   const [status, setStatus] =  useState("Not Started");
   const [taskList, setTaskList] = useState<Task[]>([]);
 
-  function AddTask() {
-    console.log(taskList);
-    const task = {title, description, dueDate, priority, status}
-    setTaskList((t) => [...t,task]);
-    console.log(taskList);
+  function AddTask(event: FormEvent) {
+    event.preventDefault();
+    const task: Task = {title:title, description:description, dueDate:dueDate, priority:priority, status:status}
+    setTaskList((t) => [...t,task]);  
   }
 
   return { taskList, AddTask, setTitle, setDueDate, setDescription, setPriority, setStatus };

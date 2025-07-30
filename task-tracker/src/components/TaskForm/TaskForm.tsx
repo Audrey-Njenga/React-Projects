@@ -1,10 +1,25 @@
-import UseTask from "../../hooks/UseTask";
+import type { FormEvent } from "react";
 
-export default function TaskForm() {
-  const {AddTask, setTitle, setDescription, setDueDate, setPriority, setStatus} = UseTask();
+interface TaskFormProps {
+  AddTask: (event: FormEvent<Element>) => void;
+  setTitle: (title: string) => void;
+  setDescription: (description: string) => void;
+  setDueDate: (dueDate: string) => void;
+  setPriority: (priority: string) => void;
+  setStatus: (status: string) => void;
+}
+
+export default function TaskForm({
+  AddTask,
+  setTitle,
+  setDescription,
+  setDueDate,
+  setPriority,
+  setStatus,
+}: TaskFormProps) {
   return (
     <div className="bg-white">
-      <form className="grid grid-flow-row" onSubmit={(e) => {e.preventDefault(); AddTask()}}>
+      <form className="grid grid-flow-row" onSubmit={AddTask}>
         <h2 className="mx-2 mb-4 font-semibold text-base"> Create new task</h2>
         <label className="text-xs px-4 text-gray-500">Title</label>
         <input
@@ -30,7 +45,7 @@ export default function TaskForm() {
         ></input>
         <label className="text-xs px-4 text-gray-500">Priority</label>
         <select
-         onChange={(e) => setPriority(e.target.value)}
+          onChange={(e) => setPriority(e.target.value)}
           title="Priority"
           className="text-sm m-2 block w-full max-w-xs h-10 px-4 py-2 rounded-lg text-blue-950 border border-gray-300 focus:outline-none font-sans border-solid"
         >
@@ -48,7 +63,10 @@ export default function TaskForm() {
           <option value={1}>In Progress</option>
           <option value={1}>Completed</option>
         </select>
-        <button onClick={AddTask} className="justify-start mr-24 ml-2 my-5 p-2 border border-gray-800 rounded-md bg-blue-800 text-white">
+        <button
+          type="submit"
+          className="justify-start mr-24 ml-2 my-5 p-2 border border-gray-800 rounded-md bg-blue-800 text-white"
+        >
           Create
         </button>
       </form>
