@@ -1,0 +1,33 @@
+# Build directories
+bin/
+obj/
+
+# VS Code
+.vscode/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+
+# ASP.NET temporary files
+*.dbmdl
+*.log
+
+# SQLite database files
+*.db
+*.db-shm
+*.db-wal
+
+# EF Core Migrations snapshot
+Migrations/*Snapshot.cs
+
+# Environment config
+appsettings.Development.json
+secrets.json
+
+# Others
+*.swp
+*.tmp
+*.DS_Store
+Thumbs.db
